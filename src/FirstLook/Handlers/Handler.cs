@@ -12,7 +12,7 @@ abstract class Handler<T> : IHandler<T> where T : class
       throw new ArgumentNullException(nameof(handlers));
     }
 
-    if (!handlers.Any())
+    if (handlers.Any() is false)
     {
       throw new ArgumentException("At least one handler must be provided", nameof(handlers));
     }
