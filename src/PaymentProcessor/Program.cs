@@ -18,7 +18,13 @@ order.SelectedPayments.Add(new Payment()
 Console.WriteLine(order.AmountDue);
 Console.WriteLine(order.ShipStatus);
 
+var rootHandler = PaymentHandler.CreateChain([
+  new PaypalHandler(),
+  new CreditCardHandler(),
+  new InvoiceHandler()
+]);
 
+await rootHandler.HandleAsync(order);
 
 Console.WriteLine(order.AmountDue);
 Console.WriteLine(order.ShipStatus);
